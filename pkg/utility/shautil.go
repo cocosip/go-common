@@ -18,14 +18,12 @@ func GetSha1(buffer []byte) string {
 func GetSha256(buffer []byte) string {
 	h:=sha256.New()
 	h.Write(buffer)
-	//return fmt.Sprintf("%x",h.Sum(nil))
 	return hex.EncodeToString(h.Sum(nil))
 }
 
 func GetSha512(buffer []byte) string {
 	h:=sha512.New()
 	h.Write(buffer)
-	//return fmt.Sprintf("%x",h.Sum(nil))
 	return hex.EncodeToString(h.Sum(nil))
 }
 
