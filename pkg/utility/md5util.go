@@ -6,7 +6,7 @@ import (
 )
 
 func GetMd5(buffer []byte) string {
-	h:=md5.New()
+	h := md5.New()
 	h.Write(buffer)
 	return hex.EncodeToString(h.Sum(nil))
 }

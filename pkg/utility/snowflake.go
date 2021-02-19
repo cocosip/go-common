@@ -67,18 +67,18 @@ func (s *SnowflakeId) NextId() int64 {
 }
 
 func timeGen() int64 {
-	return 	time.Now().UTC().UnixNano()/1000000
+	return time.Now().UTC().UnixNano() / 1000000
 }
 
 func tilNextMillis(lastTimestamp int64) int64 {
-  timestamp := timeGen()
-  for{
-	  if timestamp <= lastTimestamp {
-		  timestamp = timeGen()
-	  }else{
-	  	break
-	  }
-  }
+	timestamp := timeGen()
+	for {
+		if timestamp <= lastTimestamp {
+			timestamp = timeGen()
+		} else {
+			break
+		}
+	}
 	return timestamp
 }
 
@@ -89,7 +89,7 @@ func NewSnowflakeId(workerId int64,datacenterId int64) SnowflakeId {
 	if datacenterId > MaxDatacenterId || datacenterId < 0 {
 		panic(errors.New(fmt.Sprintf("datacenter Id can't be greater than %d or less than 0", MaxDatacenterId)))
 	}
-	s := SnowflakeId{workerId: workerId, datacenterId: datacenterId,sequence: 0,lastTimestamp: -1,m: new(sync.Mutex)}
+	s := SnowflakeId{workerId: workerId, datacenterId: datacenterId, sequence: 0, lastTimestamp: -1, m: new(sync.Mutex)}
 	return s
 }
 
